@@ -94,6 +94,13 @@ export const SolarSystem: React.FC = () => {
             e.stopPropagation();
             setIsDragging(false);
 
+            if (bodies.length >= 50) {
+                console.warn("Max bodies reached");
+                setDragStart(null);
+                setDragCurrent(null);
+                return;
+            }
+
             const launchVector = new Vector3().subVectors(dragStart, dragCurrent);
             const velocity = launchVector.multiplyScalar(0.5); // Scale factor for velocity
 
